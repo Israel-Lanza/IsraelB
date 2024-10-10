@@ -7,6 +7,7 @@
         $edad = $_POST['edad'];
         $pais = $_POST['pais'];
         $contador_errores = 0;
+        //Expresiones regulares
         $patron_nombre = "/^[A-Z]{1}+[a-z]{5,15}$/";
         $patron_email = "/^[a-z[A-Z0-9]+[-._]{0,1}[a-zA-Z0-9]+@[a-zA-Z0-9]+[-_]{0,1}[a-zA-Z0-9]+\.{1}[a-zA-Z]{2,}$/";
 
@@ -58,7 +59,8 @@
                     break;
                 default:
                     echo "Error, país inválido, tiene las opciones puestas";
-            }
+                    $contador_errores++;
+            };
 
             if($contador_errores==0){
                 $_SESSION['nombre'] = $nombre;
