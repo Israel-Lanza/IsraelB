@@ -1,7 +1,8 @@
-<?php
+<?php   
+    session_start();
     //Comprobamos que el formulario se ha enviado
     if(!empty($_POST['paso'])){
-        $usuario = $_POST['nombre'];
+        $nombre = $_POST['nombre'];
         $email = $_POST['email'];
         $edad = $_POST['edad'];
         $pais = $_POST['pais'];
@@ -10,7 +11,7 @@
         $patron_email = "/^[a-z[A-Z0-9]+[-._]{0,1}[a-zA-Z0-9]+@[a-zA-Z0-9]+[-_]{0,1}[a-zA-Z0-9]+\.{1}[a-zA-Z]{2,}$/";
 
         //COmprobaciones por si alguno de los campos está vacio
-        if(empty($usuario)){
+        if(empty($nombre)){
             echo "!ERROR!, campo Nombre vacio";
             $contador_errores++;
         };
@@ -48,10 +49,27 @@
                 $contador_errores++;
             };
 
-            if($pais != "España" || $pais != "Japón" || $pais != "Inglaterra"){
-                echo "!Error¡, pais no válido, tiene las opciones que puede poner";
-                $contador_errores++;
+            switch($pais){
+                case "España":
+                    break;
+                case "Japón":
+                    break;
+                case "Inglaterra":
+                    break;
+                default:
+                    echo "Error, país inválido, tiene las opciones puestas";
             }
+
+            if($contador_errores==0){
+                $_SESSION['nombre'] = $nombre;
+                $_SESSION['email'] = $email;
+                $_SESSION['edad'] = $edad;
+                $_SESSION['pais'] = $pais;
+
+                header("location: ./informacion.php");
+                exit();
+
+            };
 
 
         };
@@ -65,7 +83,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
