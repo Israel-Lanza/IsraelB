@@ -58,7 +58,7 @@
                 case "Inglaterra":
                     break;
                 default:
-                    echo "Error, país inválido, tiene las opciones puestas";
+                    echo "Error, país inválido, tiene las opciones puestas<br>";
                     $contador_errores++;
             };
 
